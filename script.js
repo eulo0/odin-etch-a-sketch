@@ -5,10 +5,14 @@ function createGrid(){
             var box = document.createElement("div");  
             box.classList.add("box"); 
             container.appendChild(box);
+            box.addEventListener("mouseover", (event) => {
+                event.target.style.backgroundColor = "black";
+            });
         }
     }
 }
 
 const container = document.querySelector(".container"); 
 
-createGrid();
+createGrid();  
+
