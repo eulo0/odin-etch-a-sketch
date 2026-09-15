@@ -1,0 +1,18 @@
+
+.container {
+    background: lightgray;
+    display: flex;
+    height: 700px;
+    width: 700px;
+    margin: 20px auto;
+    border: 2px solid black;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.box {
+    height: 41.75px;
+    width: 41.75px;
+    background: white;
+    border: 1px solid black; 
+}
