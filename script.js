@@ -1,15 +1,34 @@
 function createGrid(boxDimensions){
     const cellDimensions = (700 / boxDimensions) - 2;
-    console.log(cellDimensions);
     for (var i = 0; i < boxDimensions; i++) {
         for (var j = 0; j < boxDimensions; j++) {
-            var box = document.createElement("div");  
-            box.classList.add("box"); 
-            box.setAttribute("style", "height: " + cellDimensions + 
-                "px; width: " + cellDimensions + "px;");
+            var box = document.createElement("div");   
+            box.setAttribute("style", "height: " + cellDimensions + "px; width: " + cellDimensions + "px; background: white; " +
+                             "border: 1px solid black;");
             container.appendChild(box);
             box.addEventListener("mouseover", (event) => {
-                event.target.style.backgroundColor = "black";
+                if (event.target.style.backgroundColor === "white") {
+                    const red = Math.floor(Math.random() * 255); 
+                    const green = Math.floor(Math.random() * 255); 
+                    const blue = Math.floor(Math.random() * 255); 
+                    const style = "rgba(" + red + ", " + green + ", " + blue + ", 0.1)";
+                    event.target.style.backgroundColor = style;    
+                }
+                else {
+                    var originalRGBA = event.target.style.backgroundColor.split(" ");
+                    if (originalRGBA.length === 4) {
+                        const alpha = originalRGBA[3].replace(")", "").replace(",","");
+                        const newAlpha = parseFloat(alpha) + 0.1;
+                        const updatedValue = originalRGBA[0] + " " + originalRGBA[1] + " " + originalRGBA[2] + " " + newAlpha + ")";
+                        event.target.style.backgroundColor = updatedValue;
+                    }
+                    else {
+                        const red = originalRGBA[0].replace("rgb", "");
+                        const green = originalRGBA[2].replace(")", "");
+                        const updatedValue = "rgba" + red + " " + originalRGBA[1] + " " + green + ", 0.1)";
+                        event.target.style.backgroundColor = updatedValue;
+                    }
+                }
             });
         }
     }
