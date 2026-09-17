@@ -36,9 +36,21 @@ function createGrid(boxDimensions){
 
 function changeGrid(){
     const number = prompt("Enter a number");
-    const boxes = document.querySelectorAll(".box");
-    boxes.forEach((box) => box.remove());
-    createGrid(number)
+    if (Number.isInteger(parseInt(number))){
+        if (number >= 1 && number <= 100){
+            const boxes = container.children
+            for (var i = boxes.length - 1; i >=0; i--) {
+                boxes[i].remove();
+            }
+            createGrid(number);
+        }
+        else {
+            alert("Number must be within 1-100 range");
+        }
+    }
+    else {
+        alert("Please enter a valid number (1-100)");
+    }
 }
 
 const container = document.querySelector(".container"); 
